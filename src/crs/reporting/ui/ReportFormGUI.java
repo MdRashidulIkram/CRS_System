@@ -4,6 +4,7 @@ import crs.reporting.CourseRepository;
 import crs.reporting.GradesRepository;
 import crs.reporting.ReportService;
 import crs.reporting.StudentRepository;
+import crs.reporting.email.EmailService;
 import crs.reporting.models.StudentReport;
 import crs.reporting.pdf.PdfExporter;
 import java.awt.Desktop;
@@ -19,6 +20,7 @@ public class ReportFormGUI extends javax.swing.JFrame {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(ReportFormGUI.class.getName());
     private static ReportService reportService;
+    private static String pdfFileName;
 
     /**
      * Creates new form ReportFormGUI
@@ -28,6 +30,7 @@ public class ReportFormGUI extends javax.swing.JFrame {
         this.reportService = rs;
         btnGenerate.setEnabled(false);
         btnExportPDF.setEnabled(false);
+        btnSendEmail.setEnabled(false);
         addStudentIdListener();
 
         txtStudentId.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -60,6 +63,7 @@ public class ReportFormGUI extends javax.swing.JFrame {
         txtYear = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableGrades = new javax.swing.JTable();
+        btnSendEmail = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -96,6 +100,9 @@ public class ReportFormGUI extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tableGrades);
 
+        btnSendEmail.setText("Send Email");
+        btnSendEmail.addActionListener(this::btnSendEmailActionPerformed);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -114,13 +121,15 @@ public class ReportFormGUI extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(txtStudentId, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(15, 15, 15)
-                                .addComponent(btnGenerate, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnExportPDF, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btnGenerate, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(txtName, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
                                 .addComponent(txtMajor)
-                                .addComponent(txtYear))))
+                                .addComponent(txtYear)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnExportPDF, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
+                            .addComponent(btnSendEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 456, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -135,10 +144,15 @@ public class ReportFormGUI extends javax.swing.JFrame {
                     .addComponent(txtStudentId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnGenerate)
                     .addComponent(btnExportPDF))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(btnSendEmail)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
@@ -207,9 +221,12 @@ public class ReportFormGUI extends javax.swing.JFrame {
         }
 
         // Export Report
-        String pdfFileName = studentId + "_Report.pdf";
+        pdfFileName = studentId + "_Report.pdf";
         PdfExporter exporter = new PdfExporter();
         exporter.exportReport(report, pdfFileName);
+
+        // Enable send email button
+        btnSendEmail.setEnabled(true);
 
         // OPEN THE PDF AUTOMATICALLY
         try {
@@ -221,6 +238,36 @@ public class ReportFormGUI extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }//GEN-LAST:event_btnExportPDFActionPerformed
+
+    private void btnSendEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSendEmailActionPerformed
+        // TODO add your handling code here:
+        String studentId = txtStudentId.getText().trim();
+        String email = reportService.getStudentEmail(studentId);
+
+        if (email == null) {
+            JOptionPane.showMessageDialog(this, "Student email not found.");
+            return;
+        }
+
+        // Email sender credentials
+        EmailService emailService = new EmailService(
+                "javagroup23@gmail.com",
+                "ILoveJava"
+        );
+
+        boolean sent = emailService.sendEmail(
+                email,
+                "Academic Performance Report",
+                "Dear student,\n\nPlease find attached your academic report.\n\nRegards,\nCRS System",
+                pdfFileName
+        );
+
+        if (sent) {
+            JOptionPane.showMessageDialog(this, "Email sent successfully!");
+        } else {
+            JOptionPane.showMessageDialog(this, "Failed to send email.");
+        }
+    }//GEN-LAST:event_btnSendEmailActionPerformed
 
     /**
      * @param args the command line arguments
@@ -348,6 +395,7 @@ public class ReportFormGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnExportPDF;
     private javax.swing.JButton btnGenerate;
+    private javax.swing.JButton btnSendEmail;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

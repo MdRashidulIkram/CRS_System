@@ -13,11 +13,13 @@ public class StudentRepository {
         public String name;
         public String major;
         public String year;
+        public String email;
 
-        public StudentInfo(String name, String major, String year) {
+        public StudentInfo(String name, String major, String year, String email) {
             this.name = name;
             this.major = major;
             this.year = year;
+            this.email = email;
         }
     }
 
@@ -33,8 +35,9 @@ public class StudentRepository {
                 String fullName = parts[1] + " " + parts[2];
                 String major = parts[3];
                 String year = parts[4];
+                String email = parts[5];
 
-                studentMap.put(id, new StudentInfo(fullName, major, year));
+                studentMap.put(id, new StudentInfo(fullName, major, year, email));
             }
 
         } catch (Exception e) {

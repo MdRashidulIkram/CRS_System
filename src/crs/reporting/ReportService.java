@@ -80,4 +80,8 @@ public class ReportService {
 
         return cgpa;
     }
+    
+    public String getStudentEmail(String studentId) {
+        return studentRepo.getStudent(studentId).email;
+    }
 }

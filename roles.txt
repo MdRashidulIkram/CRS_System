@@ -1,0 +1,4 @@
+R001|ADMIN|Full system access including user management
+R002|COURSE_ADMIN|Manage course recovery plans and eligibility checks
+R003|LECTURER|View and update course recovery plans for assigned students
+R004|STUDENT|View own recovery plan and academic performance

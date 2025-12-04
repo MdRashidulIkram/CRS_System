@@ -8,7 +8,6 @@ public class StudentReport {
     private String studentName;
     private String major;
     private String year;
-
     private List<ReportEntry> entries = new ArrayList<>();
     private double cgpa;
 
@@ -71,6 +70,5 @@ public class StudentReport {
 
     public void setCgpa(double cgpa) {
         this.cgpa = cgpa;
-    }
-    
+    }  
 }
