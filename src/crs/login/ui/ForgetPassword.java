@@ -20,86 +20,88 @@ public class ForgetPassword extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        panelForgetPassword = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jLabel4 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jTextField3 = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
+        labelForgetPassword = new javax.swing.JLabel();
+        labelEmail = new javax.swing.JLabel();
+        txtFieldEmail = new javax.swing.JTextField();
+        labelRole = new javax.swing.JLabel();
+        txtFieldPassword = new javax.swing.JTextField();
+        comboBoxRole = new javax.swing.JComboBox<>();
+        labelPassword = new javax.swing.JLabel();
+        btnBack = new javax.swing.JButton();
+        btnForget = new javax.swing.JButton();
+        txtFieldNewPassword = new javax.swing.JTextField();
+        labelNewPassword = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(255, 153, 51));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 10, 730, -1));
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, -1, 490));
-        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 0, -1, 490));
-        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 730, -1));
+        panelForgetPassword.setBackground(new java.awt.Color(51, 51, 51));
+        panelForgetPassword.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        panelForgetPassword.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 780, -1));
+        panelForgetPassword.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 470));
+        panelForgetPassword.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 10, -1, 470));
+        panelForgetPassword.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 780, -1));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Forget Password");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 30, -1, -1));
+        labelForgetPassword.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        labelForgetPassword.setForeground(new java.awt.Color(255, 255, 255));
+        labelForgetPassword.setText("Forget Password");
+        panelForgetPassword.add(labelForgetPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 30, -1, -1));
 
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Email:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 120, -1, -1));
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 140, 280, -1));
+        labelEmail.setForeground(new java.awt.Color(255, 255, 255));
+        labelEmail.setText("Email:");
+        panelForgetPassword.add(labelEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 120, -1, -1));
+        panelForgetPassword.add(txtFieldEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 140, 280, -1));
 
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Role:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 330, -1, -1));
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 210, 280, 20));
+        labelRole.setForeground(new java.awt.Color(255, 255, 255));
+        labelRole.setText("Role:");
+        panelForgetPassword.add(labelRole, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 330, -1, -1));
+        panelForgetPassword.add(txtFieldPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 210, 280, -1));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ADMIN", "COURSE_ADMIN", "LECTURER", "STUDENT" }));
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 350, 280, -1));
+        comboBoxRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ADMIN", "COURSE_ADMIN", "LECTURER", "STUDENT" }));
+        panelForgetPassword.add(comboBoxRole, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 350, 280, -1));
 
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Password:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 190, -1, 10));
+        labelPassword.setForeground(new java.awt.Color(255, 255, 255));
+        labelPassword.setText("Password:");
+        panelForgetPassword.add(labelPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 190, -1, 10));
 
-        jButton1.setText("Back");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnBack.setText("Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnBackActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 430, -1, -1));
+        panelForgetPassword.add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 430, -1, -1));
 
-        jButton2.setText("Forget");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnForget.setText("Submit");
+        btnForget.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnForgetActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 430, -1, -1));
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 280, 280, -1));
+        panelForgetPassword.add(btnForget, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 430, -1, -1));
+        panelForgetPassword.add(txtFieldNewPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 280, 280, -1));
 
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("New Password:");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 260, -1, -1));
+        labelNewPassword.setForeground(new java.awt.Color(255, 255, 255));
+        labelNewPassword.setText("New Password:");
+        panelForgetPassword.add(labelNewPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 260, -1, -1));
+        panelForgetPassword.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 470, 780, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 830, 490));
+        getContentPane().add(panelForgetPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 830, 490));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        String email = jTextField1.getText().trim();
-    String oldPassword = jTextField2.getText().trim();
-    String newPassword = jTextField3.getText().trim();
-    String role = jComboBox1.getSelectedItem().toString();
+    private void btnForgetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnForgetActionPerformed
+        String email = txtFieldEmail.getText().trim();
+    String oldPassword = txtFieldPassword.getText().trim();
+    String newPassword = txtFieldNewPassword.getText().trim();
+    String role = comboBoxRole.getSelectedItem().toString();
 
     if (email.isEmpty() || oldPassword.isEmpty() || newPassword.isEmpty()) {
         JOptionPane.showMessageDialog(this, "All fields are required!",
@@ -123,12 +125,12 @@ public class ForgetPassword extends javax.swing.JFrame {
                 "Invalid email, old password, or role.",
                 "Failed", JOptionPane.ERROR_MESSAGE);
     }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnForgetActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
     new Main().setVisible(true);
     this.dispose();  // close Login window
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnBackActionPerformed
 
     /**
      * @param args the command line arguments
@@ -166,21 +168,22 @@ public class ForgetPassword extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnForget;
+    private javax.swing.JComboBox<String> comboBoxRole;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JLabel labelEmail;
+    private javax.swing.JLabel labelForgetPassword;
+    private javax.swing.JLabel labelNewPassword;
+    private javax.swing.JLabel labelPassword;
+    private javax.swing.JLabel labelRole;
+    private javax.swing.JPanel panelForgetPassword;
+    private javax.swing.JTextField txtFieldEmail;
+    private javax.swing.JTextField txtFieldNewPassword;
+    private javax.swing.JTextField txtFieldPassword;
     // End of variables declaration//GEN-END:variables
 }

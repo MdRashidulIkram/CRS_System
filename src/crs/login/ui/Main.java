@@ -3,8 +3,10 @@ package crs.login.ui;
 import javax.swing.JOptionPane;
 
 public class Main extends javax.swing.JFrame {
+
     private UserManager userManager = new UserManager();
     private LoginHistoryManager historyManager = new LoginHistoryManager();
+
     /**
      * Creates new form Main
      */
@@ -21,151 +23,147 @@ public class Main extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        panelLogIn = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtFieldEmail = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        txtFieldPassword = new javax.swing.JTextField();
+        comboBoxRole = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
+        btnExit = new javax.swing.JButton();
+        btnLogIn = new javax.swing.JButton();
+        labelForgetPassword = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 790, -1));
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 470));
-        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 10, -1, 470));
-        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 790, -1));
+        panelLogIn.setBackground(new java.awt.Color(51, 51, 51));
+        panelLogIn.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        panelLogIn.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 790, -1));
+        panelLogIn.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 470));
+        panelLogIn.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 10, -1, 470));
+        panelLogIn.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 790, -1));
 
         jLabel1.setBackground(new java.awt.Color(255, 204, 204));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 204, 204));
         jLabel1.setText("CRS System");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 30, -1, -1));
+        panelLogIn.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 30, -1, -1));
 
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Email:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 150, -1, -1));
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 170, 280, -1));
+        panelLogIn.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 150, -1, -1));
+        panelLogIn.add(txtFieldEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 170, 280, -1));
 
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Role:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 310, -1, -1));
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 250, 280, -1));
+        panelLogIn.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 310, -1, -1));
+        panelLogIn.add(txtFieldPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 250, 280, -1));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ADMIN", "COURSE_ADMIN", "LECTURER", "STUDENT" }));
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 330, 280, -1));
+        comboBoxRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ACADEMIC_OFFICER", "COURSE_ADMIN" }));
+        panelLogIn.add(comboBoxRole, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 330, 280, -1));
 
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Password:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 230, -1, -1));
+        panelLogIn.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 230, -1, -1));
 
-        jButton1.setText("Exit");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnExit.setText("Exit");
+        btnExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnExitActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 410, -1, -1));
+        panelLogIn.add(btnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 410, -1, -1));
 
-        jButton2.setText("Login");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnLogIn.setText("Login");
+        btnLogIn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnLogInActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 410, -1, -1));
+        panelLogIn.add(btnLogIn, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 410, -1, -1));
 
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Forgot Password?");
-        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+        labelForgetPassword.setForeground(new java.awt.Color(255, 255, 255));
+        labelForgetPassword.setText("Forgot Password?");
+        labelForgetPassword.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel5MouseClicked(evt);
+                labelForgetPasswordMouseClicked(evt);
             }
         });
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 360, -1, -1));
-        jPanel1.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 470, 790, -1));
+        panelLogIn.add(labelForgetPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 360, -1, -1));
+        panelLogIn.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 470, 790, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 830, 490));
+        getContentPane().add(panelLogIn, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 830, 490));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-    String email = jTextField1.getText().trim();
-    String password = jTextField2.getText();
-    String role = jComboBox1.getSelectedItem().toString();
+    private void btnLogInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogInActionPerformed
+        String email = txtFieldEmail.getText().trim().toLowerCase();
+        String password = txtFieldPassword.getText();
+        String role = comboBoxRole.getSelectedItem().toString();
 
-    if (email.isEmpty() || password.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Please enter email and password.",
-                "Validation", JOptionPane.WARNING_MESSAGE);
-        return;
-    }
-
-    User user = userManager.authenticate(email, password, role);
-
-    if (user == null) {
-        JOptionPane.showMessageDialog(this,
-                "Invalid email / password / role.",
-                "Login Failed",
-                JOptionPane.ERROR_MESSAGE);
-        return;
-    }
-
-    if (!user.isActive()) {
-        JOptionPane.showMessageDialog(this,
-                "Your account is deactivated. Please contact admin.",
-                "Login Failed",
-                JOptionPane.ERROR_MESSAGE);
-        return;
-    }
-
-    // ✅ login history me entry
-    historyManager.logLogin(user.getId());
-
-    // ✅ role ke mutabiq dashboard open
-    switch (user.getRole().toUpperCase()) {
-        case "ADMIN":
-            new AdminDashboard(user).setVisible(true);
-            break;
-        case "COURSE_ADMIN":
-            new CourseAdminDashboard(user).setVisible(true);
-            break;
-        case "LECTURER":
-            new LecturerDashboard(user).setVisible(true);
-            break;
-        case "STUDENT":
-            new StudentDashboard(user).setVisible(true);
-            break;
-        default:
-            JOptionPane.showMessageDialog(this,
-                    "Unknown role: " + user.getRole(),
-                    "Error", JOptionPane.ERROR_MESSAGE);
+        if (email.isEmpty() || password.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter email and password.",
+                    "Validation", JOptionPane.WARNING_MESSAGE);
             return;
-    }
+        }
 
-    this.dispose(); // login window close
-    }//GEN-LAST:event_jButton2ActionPerformed
+        User user = userManager.authenticate(email, password, role);
 
-    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
-    new ForgetPassword().setVisible(true);
-    this.dispose();  // close Login window
-    }//GEN-LAST:event_jLabel5MouseClicked
+        if (user == null) {
+            JOptionPane.showMessageDialog(this,
+                    "Invalid email / password / role.",
+                    "Login Failed",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    System.exit(0);
-    }//GEN-LAST:event_jButton1ActionPerformed
+        if (!user.isActive()) {
+            JOptionPane.showMessageDialog(this,
+                    "Your account is deactivated. Please contact admin.",
+                    "Login Failed",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // ✅ login history me entry
+        historyManager.logLogin(user.getId());
+
+        // ✅ role ke mutabiq dashboard open
+        switch (user.getRole().toUpperCase()) {
+            case "ACADEMIC_OFFICER":
+                new AcademicOfficerDashboard(user).setVisible(true);
+                break;
+
+            case "COURSE_ADMIN":
+                new CourseAdminDashboard(user).setVisible(true);
+                break;
+
+            default:
+                JOptionPane.showMessageDialog(this,
+                        "Unknown role: " + user.getRole(),
+                        "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+        }
+
+        this.dispose(); // login window close
+    }//GEN-LAST:event_btnLogInActionPerformed
+
+    private void labelForgetPasswordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelForgetPasswordMouseClicked
+        new ForgetPassword().setVisible(true);
+        this.dispose();  // close Login window
+    }//GEN-LAST:event_labelForgetPasswordMouseClicked
+
+    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_btnExitActionPerformed
 
     /**
      * @param args the command line arguments
@@ -204,21 +202,21 @@ public class Main extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JButton btnExit;
+    private javax.swing.JButton btnLogIn;
+    private javax.swing.JComboBox<String> comboBoxRole;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JLabel labelForgetPassword;
+    private javax.swing.JPanel panelLogIn;
+    private javax.swing.JTextField txtFieldEmail;
+    private javax.swing.JTextField txtFieldPassword;
     // End of variables declaration//GEN-END:variables
 }

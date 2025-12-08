@@ -102,18 +102,13 @@ public class UserManager {
                               String role, String status) {
 
         switch (role.toUpperCase()) {
-            case "ADMIN":
-                return new Admin(id, name, email, username, password, status);
+            case "ACADEMIC_OFFICER":
+                return new AcademicOfficer(id, name, email, username, password, status);
 
             case "COURSE_ADMIN":
                 return new CourseAdmin(id, name, email, username, password, status);
-
-            case "LECTURER":
-                return new Lecturer(id, name, email, username, password, status);
-
-            case "STUDENT":
             default:
-                return new Student(id, name, email, username, password, status);
+                return new CourseAdmin(id, name, email, username, password, status);
         }
     }
 

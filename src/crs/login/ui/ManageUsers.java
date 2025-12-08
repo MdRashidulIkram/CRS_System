@@ -21,7 +21,7 @@ private void loadTable() {
         });
     }
 
-    jTable1.setModel(model);
+    tableManageUsers.setModel(model);
 }
     /**
      * Creates new form ManageUsers
@@ -41,55 +41,56 @@ private void loadTable() {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        panelManageUsers = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        lblManageUsers = new javax.swing.JLabel();
+        btnEdit = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jLabel6 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jLabel7 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        tableManageUsers = new javax.swing.JTable();
+        txtFieldFullName = new javax.swing.JTextField();
+        labelFullName = new javax.swing.JLabel();
+        txtFieldEmail = new javax.swing.JTextField();
+        labelEmail = new javax.swing.JLabel();
+        txtFieldUserName = new javax.swing.JTextField();
+        lblUserName = new javax.swing.JLabel();
+        txtFieldPassword = new javax.swing.JTextField();
+        labelPassword = new javax.swing.JLabel();
+        comboBoxRole = new javax.swing.JComboBox<>();
+        labelRole = new javax.swing.JLabel();
+        comboBoxStatus = new javax.swing.JComboBox<>();
+        labelStatus = new javax.swing.JLabel();
+        btnAdd = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
+        jPanel6 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(255, 153, 51));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 10, 770, -1));
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, -1, 600));
-        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 0, -1, 600));
-        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 770, -1));
+        panelManageUsers.setBackground(new java.awt.Color(51, 51, 51));
+        panelManageUsers.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        panelManageUsers.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 830, -1));
+        panelManageUsers.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 580));
+        panelManageUsers.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 10, -1, 580));
+        panelManageUsers.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 830, -1));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Manage Users");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 30, -1, -1));
+        lblManageUsers.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        lblManageUsers.setForeground(new java.awt.Color(255, 255, 255));
+        lblManageUsers.setText("Manage Users");
+        panelManageUsers.add(lblManageUsers, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 30, -1, -1));
 
-        jButton2.setText("Edit");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnEdit.setText("Edit");
+        btnEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnEditActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 490, 110, -1));
+        panelManageUsers.add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 490, 110, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tableManageUsers.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -100,104 +101,104 @@ private void loadTable() {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tableManageUsers);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, -1, 470));
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 140, 240, -1));
+        panelManageUsers.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, -1, 460));
+        panelManageUsers.add(txtFieldFullName, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 140, 240, -1));
 
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Full Name:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 120, -1, -1));
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 200, 240, -1));
+        labelFullName.setForeground(new java.awt.Color(255, 255, 255));
+        labelFullName.setText("Full Name:");
+        panelManageUsers.add(labelFullName, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 120, -1, -1));
+        panelManageUsers.add(txtFieldEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 200, 240, -1));
 
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Email:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 180, -1, -1));
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 260, 240, -1));
+        labelEmail.setForeground(new java.awt.Color(255, 255, 255));
+        labelEmail.setText("Email:");
+        panelManageUsers.add(labelEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 180, -1, -1));
+        panelManageUsers.add(txtFieldUserName, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 260, 240, -1));
 
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Username:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 240, -1, -1));
-        jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 320, 240, -1));
+        lblUserName.setForeground(new java.awt.Color(255, 255, 255));
+        lblUserName.setText("Username:");
+        panelManageUsers.add(lblUserName, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 240, -1, -1));
+        panelManageUsers.add(txtFieldPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 320, 240, -1));
 
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Password:");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 300, -1, -1));
+        labelPassword.setForeground(new java.awt.Color(255, 255, 255));
+        labelPassword.setText("Password:");
+        panelManageUsers.add(labelPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 300, -1, -1));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ADMIN", "COURSE_ADMIN", "LECTURER", "STUDENT" }));
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 380, 240, -1));
+        comboBoxRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ACADEMIC_OFFICER", "COURSE_ADMIN" }));
+        panelManageUsers.add(comboBoxRole, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 380, 240, -1));
 
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Role:");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 360, -1, -1));
+        labelRole.setForeground(new java.awt.Color(255, 255, 255));
+        labelRole.setText("Role:");
+        panelManageUsers.add(labelRole, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 360, -1, -1));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ACTIVE", "INACTIVE" }));
-        jPanel1.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 440, 240, -1));
+        comboBoxStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ACTIVE", "INACTIVE" }));
+        panelManageUsers.add(comboBoxStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 440, 240, -1));
 
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Status:");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 420, -1, -1));
+        labelStatus.setForeground(new java.awt.Color(255, 255, 255));
+        labelStatus.setText("Status:");
+        panelManageUsers.add(labelStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 420, -1, -1));
 
-        jButton3.setText("Add");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnAdd.setText("Add");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnAddActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 490, 110, -1));
+        panelManageUsers.add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 490, 110, -1));
 
-        jButton4.setText("Back");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnBack.setText("Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btnBackActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 540, 110, -1));
+        panelManageUsers.add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 540, 110, -1));
 
-        jButton5.setText("Delete");
-        jButton5.setActionCommand("Delete");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                btnDeleteActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 540, 110, -1));
+        panelManageUsers.add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 540, 110, -1));
+        panelManageUsers.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 580, 830, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 870, 600));
+        getContentPane().add(panelManageUsers, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 870, 600));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         String id = "U" + System.currentTimeMillis();
-    String name = jTextField1.getText();
-    String email = jTextField2.getText();
-    String username = jTextField3.getText();
-    String password = jTextField4.getText();
-    String role = jComboBox1.getSelectedItem().toString();
-    String status = jComboBox2.getSelectedItem().toString();
+    String name = txtFieldFullName.getText();
+    String email = txtFieldEmail.getText().toLowerCase();
+    String username = txtFieldUserName.getText();
+    String password = txtFieldPassword.getText();
+    String role = comboBoxRole.getSelectedItem().toString();
+    String status = comboBoxStatus.getSelectedItem().toString();
 
     User newUser = userManager.createUserObj(id, name, email, username, password, role, status);
 
     userManager.addUser(newUser);
     loadTable();
     JOptionPane.showMessageDialog(this, "User added!");
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btnAddActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        int row = jTable1.getSelectedRow();
+    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
+        int row = tableManageUsers.getSelectedRow();
     if (row == -1) {
         JOptionPane.showMessageDialog(this, "Select a user first!");
         return;
     }
 
-    String id = jTable1.getValueAt(row, 0).toString();
-    String name = jTextField1.getText();
-    String email = jTextField2.getText();
-    String username = jTextField3.getText();
-    String password = jTextField4.getText();
-    String role = jComboBox1.getSelectedItem().toString();
-    String status = jComboBox2.getSelectedItem().toString();
+    String id = tableManageUsers.getValueAt(row, 0).toString();
+    String name = txtFieldFullName.getText();
+    String email = txtFieldEmail.getText();
+    String username = txtFieldUserName.getText();
+    String password = txtFieldPassword.getText();
+    String role = comboBoxRole.getSelectedItem().toString();
+    String status = comboBoxStatus.getSelectedItem().toString();
 
     User updated = userManager.createUserObj(id, name, email, username, password, role, status);
 
@@ -205,52 +206,53 @@ private void loadTable() {
     loadTable();
 
     JOptionPane.showMessageDialog(this, "User updated!");
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnEditActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        int row = jTable1.getSelectedRow();
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        int row = tableManageUsers.getSelectedRow();
     if (row == -1) {
         JOptionPane.showMessageDialog(this, "Please select a user!");
         return;
     }
 
-    String userId = jTable1.getValueAt(row, 0).toString();
+    String userId = tableManageUsers.getValueAt(row, 0).toString();
 
     userManager.deleteUser(userId);
     loadTable();
 
     JOptionPane.showMessageDialog(this, "User deleted.");
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-    new AdminDashboard(currentUser).setVisible(true);
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+    new AcademicOfficerDashboard(currentUser).setVisible(true);
     this.dispose(); 
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_btnBackActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnEdit;
+    private javax.swing.JComboBox<String> comboBoxRole;
+    private javax.swing.JComboBox<String> comboBoxStatus;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JLabel labelEmail;
+    private javax.swing.JLabel labelFullName;
+    private javax.swing.JLabel labelPassword;
+    private javax.swing.JLabel labelRole;
+    private javax.swing.JLabel labelStatus;
+    private javax.swing.JLabel lblManageUsers;
+    private javax.swing.JLabel lblUserName;
+    private javax.swing.JPanel panelManageUsers;
+    private javax.swing.JTable tableManageUsers;
+    private javax.swing.JTextField txtFieldEmail;
+    private javax.swing.JTextField txtFieldFullName;
+    private javax.swing.JTextField txtFieldPassword;
+    private javax.swing.JTextField txtFieldUserName;
     // End of variables declaration//GEN-END:variables
 }
