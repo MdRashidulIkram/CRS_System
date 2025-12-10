@@ -1,0 +1,5 @@
+studentId,courseId,courseName,componentType,componentName,score,passingScore
+S001,C204,Algorithms,Exam,Final Exam,38,50
+S001,C204,Algorithms,Assignment,Assignment 2,45,50
+S002,C210,Database Systems,Exam,Midterm,22,50
+S003,C206,Operating Systems,Exam,Final Exam,40,50

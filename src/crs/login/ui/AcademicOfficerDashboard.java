@@ -1,18 +1,15 @@
 package crs.login.ui;
 
+import crs.recovery.service.RecoveryService;
+import crs.recovery.ui.CourseRecoveryUI;
 import javax.swing.JButton;
 
 public class AcademicOfficerDashboard extends BaseDashboard {
-    
+
     public AcademicOfficerDashboard(User user) {
         super(user, "Academic Officer Dashboard");
     }
-    /**
-     * Academic Officer has one additional feature:
-     * - Course Recovery Plan
-     *
-     * This method adds the extra button.
-     */
+
     @Override
     protected void initRoleSpecificUI() {
 
@@ -20,8 +17,9 @@ public class AcademicOfficerDashboard extends BaseDashboard {
         btnCourseRecovery.setBounds(330, 10, 240, 45);
 
         btnCourseRecovery.addActionListener(e -> {
-            // TODO: Replace with your actual UI for Task 2
-            //new CourseRecoveryUI(currentUser).setVisible(true);
+            RecoveryService service = crs.recovery.RecoveryModuleFactory.createService();
+            new crs.recovery.ui.CourseRecoveryUI(service, this).setVisible(true);
+
             dispose();
         });
 

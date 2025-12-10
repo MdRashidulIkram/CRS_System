@@ -1,0 +1,4 @@
+studentId,courseId,progressDescription,date,status
+S001,C204,Completed chapter review,10/4/2024,Completed
+S001,C204,Attended lecturer meeting,10/9/2024,Completed
+S002,C210,Reviewed course slides,10/10/2024,In Progress
