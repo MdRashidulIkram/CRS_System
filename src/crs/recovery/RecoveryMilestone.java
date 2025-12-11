@@ -1,4 +1,4 @@
-package crs.recovery.models;
+package crs.recovery;
 
 public class RecoveryMilestone {
 

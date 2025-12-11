@@ -1,7 +1,6 @@
-package crs.recovery.ui;
+package crs.recovery;
 
-import crs.recovery.service.RecoveryService;
-import crs.recovery.models.*;
+import crs.recovery.RecoveryService;
 import java.awt.event.ActionEvent;
 import java.util.List;
 import javax.swing.*;

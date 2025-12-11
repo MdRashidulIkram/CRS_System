@@ -1,4 +1,4 @@
-package crs.reporting.models;
+package crs.reporting;
 
 public class ReportEntry {
     private String courseId;

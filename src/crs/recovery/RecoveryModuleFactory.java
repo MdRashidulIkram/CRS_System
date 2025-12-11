@@ -1,7 +1,5 @@
 package crs.recovery;
 
-import crs.recovery.repository.RecoveryRepository;
-import crs.recovery.service.RecoveryService;
 import crs.util.ResourceUtil;
 
 public final class RecoveryModuleFactory {

@@ -1,9 +1,9 @@
-package crs.reporting.pdf;
+package crs.reporting;
 
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.*;
-import crs.reporting.models.StudentReport;
-import crs.reporting.models.ReportEntry;
+import crs.reporting.StudentReport;
+import crs.reporting.ReportEntry;
 
 import java.io.FileOutputStream;
 import java.util.stream.Stream;

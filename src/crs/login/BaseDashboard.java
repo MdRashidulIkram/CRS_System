@@ -1,11 +1,13 @@
-package crs.login.ui;
+package crs.login;
 
 import com.sun.jdi.connect.LaunchingConnector;
+import crs.eligibility.EligibilityCheckUI;
+import crs.eligibility.EligibilityService;
 import crs.reporting.CourseRepository;
 import crs.reporting.GradesRepository;
 import crs.reporting.ReportService;
 import crs.reporting.StudentRepository;
-import crs.reporting.ui.ReportFormGUI;
+import crs.reporting.ReportFormGUI;
 import crs.util.ResourceUtil;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -20,6 +22,10 @@ public abstract class BaseDashboard extends javax.swing.JFrame {
 
     private final User currentUser;
     private final LoginHistoryManager historyManager = new LoginHistoryManager();
+
+    protected StudentRepository sRepo;
+    protected CourseRepository cRepo;
+    protected GradesRepository gRepo;
 
     // Shared UI component
     protected JPanel mainPanel;
@@ -39,7 +45,18 @@ public abstract class BaseDashboard extends javax.swing.JFrame {
     public BaseDashboard(User user, String titleText) {
         //initComponents();
         this.currentUser = user;
-        initCommonUI(titleText);      // builds shared UI
+
+        // Load repositories
+        sRepo = new StudentRepository();
+        sRepo.loadStudents(ResourceUtil.get("student_information.csv"));
+
+        cRepo = new CourseRepository();
+        cRepo.loadCourses(ResourceUtil.get("course_assessment_information.csv"));
+
+        gRepo = new GradesRepository();
+        gRepo.loadGrades(ResourceUtil.get("grades.csv"));
+        
+        initCommonUI(titleText);      
         initRoleSpecificUI();
     }
 
@@ -105,7 +122,10 @@ public abstract class BaseDashboard extends javax.swing.JFrame {
 
         btnEligibilityCheck = createButton("Eligibility Check", 290);
         // Add task 3 screen here:
-        // btnEligibilityCheck.addActionListener(...)
+        btnEligibilityCheck.addActionListener(e -> {
+            new EligibilityCheckUI(currentUser, new EligibilityService(sRepo, cRepo, gRepo)).setVisible(true);
+            dispose();
+        });
 
         btnAcademicReport = createButton("Academic Performance Report", 360);
         btnAcademicReport.addActionListener(e -> {
@@ -146,18 +166,7 @@ public abstract class BaseDashboard extends javax.swing.JFrame {
     }
 
     protected void launchReportForm() {
-        // Load CSVs from resources
-        StudentRepository studentRepo = new StudentRepository();
-        studentRepo.loadStudents(ResourceUtil.get("student_information.csv"));
-
-        CourseRepository courseRepo = new CourseRepository();
-        courseRepo.loadCourses(ResourceUtil.get("course_assessment_information.csv"));
-
-        GradesRepository gradeRepo = new GradesRepository();
-        gradeRepo.loadGrades(ResourceUtil.get("grades.csv"));
-
-        ReportService rs = new ReportService(studentRepo, courseRepo, gradeRepo);
-
+        ReportService rs = new ReportService(sRepo, cRepo, gRepo);
         new ReportFormGUI(rs, this).setVisible(true);
         dispose();
     }

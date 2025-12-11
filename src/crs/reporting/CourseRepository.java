@@ -1,6 +1,5 @@
 package crs.reporting;
 
-import crs.reporting.models.ReportEntry;
 import java.util.HashMap;
 import java.util.Map;
 import java.io.BufferedReader;

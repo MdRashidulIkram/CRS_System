@@ -1,11 +1,11 @@
-package crs.reporting.ui;
+package crs.reporting;
 
 import crs.reporting.CourseRepository;
 import crs.reporting.GradesRepository;
 import crs.reporting.ReportService;
 import crs.reporting.StudentRepository;
-import crs.reporting.models.StudentReport;
-import crs.reporting.pdf.PdfExporter;
+import crs.reporting.StudentReport;
+import crs.reporting.PdfExporter;
 import crs.util.ResourceUtil;
 import java.awt.Desktop;
 import java.io.File;

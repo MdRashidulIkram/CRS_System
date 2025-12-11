@@ -1,4 +1,4 @@
-package crs.login.ui;
+package crs.login;
 
 import java.util.List;
 import javax.swing.JOptionPane;

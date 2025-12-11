@@ -1,4 +1,4 @@
-package crs.login.ui;
+package crs.login;
 
 public class CourseAdminDashboard extends BaseDashboard {
     public CourseAdminDashboard(User user) {

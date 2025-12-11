@@ -1,5 +1,6 @@
-package crs.reporting.models;
+package crs.reporting;
 
+import crs.reporting.ReportEntry;
 import java.util.ArrayList;
 import java.util.List;
 

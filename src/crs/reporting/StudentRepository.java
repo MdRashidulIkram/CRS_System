@@ -48,4 +48,8 @@ public class StudentRepository {
     public StudentInfo getStudent(String id) {
         return studentMap.get(id);
     }
+
+    public Map<String, StudentInfo> getStudentMap() {
+        return studentMap;
+    }    
 }

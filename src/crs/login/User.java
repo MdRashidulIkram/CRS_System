@@ -1,4 +1,4 @@
-package crs.login.ui;
+package crs.login;
 
 public class User {
     private String id;

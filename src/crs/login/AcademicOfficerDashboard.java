@@ -1,7 +1,7 @@
-package crs.login.ui;
+package crs.login;
 
-import crs.recovery.service.RecoveryService;
-import crs.recovery.ui.CourseRecoveryUI;
+import crs.recovery.RecoveryService;
+import crs.recovery.CourseRecoveryUI;
 import javax.swing.JButton;
 
 public class AcademicOfficerDashboard extends BaseDashboard {
@@ -18,7 +18,7 @@ public class AcademicOfficerDashboard extends BaseDashboard {
 
         btnCourseRecovery.addActionListener(e -> {
             RecoveryService service = crs.recovery.RecoveryModuleFactory.createService();
-            new crs.recovery.ui.CourseRecoveryUI(service, this).setVisible(true);
+            new crs.recovery.CourseRecoveryUI(service, this).setVisible(true);
 
             dispose();
         });

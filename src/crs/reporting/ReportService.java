@@ -1,7 +1,5 @@
 package crs.reporting;
 
-import crs.reporting.models.ReportEntry;
-import crs.reporting.models.StudentReport;
 import java.util.List;
 
 public class ReportService {

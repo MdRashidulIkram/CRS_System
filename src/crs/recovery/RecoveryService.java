@@ -1,7 +1,6 @@
-package crs.recovery.service;
+package crs.recovery;
 
-import crs.recovery.models.*;
-import crs.recovery.repository.RecoveryRepository;
+import crs.recovery.RecoveryRepository;
 import crs.reporting.StudentRepository;
 import crs.reporting.StudentRepository.StudentInfo;
 
