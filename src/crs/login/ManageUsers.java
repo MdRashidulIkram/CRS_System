@@ -1,28 +1,33 @@
 package crs.login;
 
+import crs.email.EmailService;
+import crs.email.EmailTemplates;
+import jakarta.mail.MessagingException;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class ManageUsers extends javax.swing.JFrame {
+
     private final User currentUser;
     UserManager userManager = new UserManager();
 
-private void loadTable() {
-    List<User> users = userManager.loadAllUsers();
-    String[] cols = {"ID", "Name", "Email", "Username", "Role", "Status"};
+    private void loadTable() {
+        List<User> users = userManager.loadAllUsers();
+        String[] cols = {"ID", "Name", "Email", "Username", "Role", "Status"};
 
-    DefaultTableModel model = new DefaultTableModel(cols, 0);
+        DefaultTableModel model = new DefaultTableModel(cols, 0);
 
-    for (User u : users) {
-        model.addRow(new Object[] {
-            u.getId(), u.getName(), u.getEmail(),
-            u.getUsername(), u.getRole(), u.getStatus()
-        });
+        for (User u : users) {
+            model.addRow(new Object[]{
+                u.getId(), u.getName(), u.getEmail(),
+                u.getUsername(), u.getRole(), u.getStatus()
+            });
+        }
+
+        tableManageUsers.setModel(model);
     }
 
-    tableManageUsers.setModel(model);
-}
     /**
      * Creates new form ManageUsers
      */
@@ -171,61 +176,69 @@ private void loadTable() {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         String id = "U" + System.currentTimeMillis();
-    String name = txtFieldFullName.getText();
-    String email = txtFieldEmail.getText().toLowerCase();
-    String username = txtFieldUserName.getText();
-    String password = txtFieldPassword.getText();
-    String role = comboBoxRole.getSelectedItem().toString();
-    String status = comboBoxStatus.getSelectedItem().toString();
+        String name = txtFieldFullName.getText();
+        String email = txtFieldEmail.getText().toLowerCase();
+        String username = txtFieldUserName.getText();
+        String password = txtFieldPassword.getText();
+        String role = comboBoxRole.getSelectedItem().toString();
+        String status = comboBoxStatus.getSelectedItem().toString();
 
-    User newUser = userManager.createUserObj(id, name, email, username, password, role, status);
+        User newUser = userManager.createUserObj(id, name, email, username, password, role, status);
 
-    userManager.addUser(newUser);
-    loadTable();
-    JOptionPane.showMessageDialog(this, "User added!");
+        userManager.addUser(newUser);
+        loadTable();
+        JOptionPane.showMessageDialog(this, "User added!");
+
+        new EmailService().sendEmail(email, "CRS Account Created", EmailTemplates.accountCreated(name, role));
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         int row = tableManageUsers.getSelectedRow();
-    if (row == -1) {
-        JOptionPane.showMessageDialog(this, "Select a user first!");
-        return;
-    }
+        if (row == -1) {
+            JOptionPane.showMessageDialog(this, "Select a user first!");
+            return;
+        }
 
-    String id = tableManageUsers.getValueAt(row, 0).toString();
-    String name = txtFieldFullName.getText();
-    String email = txtFieldEmail.getText();
-    String username = txtFieldUserName.getText();
-    String password = txtFieldPassword.getText();
-    String role = comboBoxRole.getSelectedItem().toString();
-    String status = comboBoxStatus.getSelectedItem().toString();
+        String id = tableManageUsers.getValueAt(row, 0).toString();
+        String name = txtFieldFullName.getText();
+        String email = txtFieldEmail.getText();
+        String username = txtFieldUserName.getText();
+        String password = txtFieldPassword.getText();
+        String role = comboBoxRole.getSelectedItem().toString();
+        String status = comboBoxStatus.getSelectedItem().toString();
 
-    User updated = userManager.createUserObj(id, name, email, username, password, role, status);
+        User updated = userManager.createUserObj(id, name, email, username, password, role, status);
 
-    userManager.updateUser(updated);
-    loadTable();
+        userManager.updateUser(updated);
+        loadTable();
 
-    JOptionPane.showMessageDialog(this, "User updated!");
+        JOptionPane.showMessageDialog(this, "User updated!");
+
+        new EmailService().sendEmail(email, "CRS Account Edited", EmailTemplates.accountEdited(name));
     }//GEN-LAST:event_btnEditActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         int row = tableManageUsers.getSelectedRow();
-    if (row == -1) {
-        JOptionPane.showMessageDialog(this, "Please select a user!");
-        return;
-    }
+        if (row == -1) {
+            JOptionPane.showMessageDialog(this, "Please select a user!");
+            return;
+        }
 
-    String userId = tableManageUsers.getValueAt(row, 0).toString();
+        String userId = tableManageUsers.getValueAt(row, 0).toString();
+        String name = tableManageUsers.getValueAt(row, 1).toString();
+        String email = tableManageUsers.getValueAt(row, 2).toString();
 
-    userManager.deleteUser(userId);
-    loadTable();
+        userManager.deleteUser(userId);
+        loadTable();
 
-    JOptionPane.showMessageDialog(this, "User deleted.");
+        JOptionPane.showMessageDialog(this, "User deleted.");
+
+        new EmailService().sendEmail(email, "CRS Account Deleted", EmailTemplates.accountDeleted(name));
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-    new AcademicOfficerDashboard(currentUser).setVisible(true);
-    this.dispose(); 
+        new AcademicOfficerDashboard(currentUser).setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnBackActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

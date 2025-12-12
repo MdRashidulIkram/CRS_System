@@ -1,5 +1,7 @@
 package crs.reporting;
 
+import crs.email.EmailService;
+import crs.email.EmailTemplates;
 import crs.reporting.CourseRepository;
 import crs.reporting.GradesRepository;
 import crs.reporting.ReportService;
@@ -19,8 +21,10 @@ import javax.swing.table.DefaultTableModel;
 public class ReportFormGUI extends javax.swing.JFrame {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(ReportFormGUI.class.getName());
-    private static ReportService reportService;
-    private static String pdfFileName;
+    private ReportService reportService;
+    private String pdfFileName;
+    private String studentId;
+    private StudentReport report;
     private javax.swing.JFrame parentWindow;
 
     /**
@@ -30,9 +34,10 @@ public class ReportFormGUI extends javax.swing.JFrame {
         initComponents();
         this.reportService = rs;
         this.parentWindow = parent;
-        
+
         btnGenerate.setEnabled(false);
         btnExportPDF.setEnabled(false);
+        btnEmailReport.setEnabled(false);
         addStudentIdListener();
 
         txtStudentId.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -66,6 +71,7 @@ public class ReportFormGUI extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tableGrades = new javax.swing.JTable();
         btnBack = new javax.swing.JButton();
+        btnEmailReport = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(51, 51, 51));
@@ -106,6 +112,9 @@ public class ReportFormGUI extends javax.swing.JFrame {
         btnBack.setText("Back");
         btnBack.addActionListener(this::btnBackActionPerformed);
 
+        btnEmailReport.setText("Email Report");
+        btnEmailReport.addActionListener(this::btnEmailReportActionPerformed);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -132,7 +141,9 @@ public class ReportFormGUI extends javax.swing.JFrame {
                                     .addComponent(txtMajor)
                                     .addComponent(txtYear)))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(btnExportPDF, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(btnExportPDF, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
+                                .addComponent(btnEmailReport, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGroup(layout.createSequentialGroup()
                             .addContainerGap()
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 456, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -150,7 +161,8 @@ public class ReportFormGUI extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEmailReport))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
@@ -161,7 +173,7 @@ public class ReportFormGUI extends javax.swing.JFrame {
                     .addComponent(txtYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addComponent(btnBack)
                 .addGap(19, 19, 19))
         );
@@ -171,14 +183,14 @@ public class ReportFormGUI extends javax.swing.JFrame {
 
     private void btnGenerateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerateActionPerformed
         // TODO add your handling code here:
-        String studentId = txtStudentId.getText().trim();
+        studentId = txtStudentId.getText().trim();
 
         if (studentId.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please enter a Student ID.");
             return;
         }
 
-        StudentReport report = reportService.generateReport(studentId);
+        report = reportService.generateReport(studentId);
 
         if (report == null) {
             JOptionPane.showMessageDialog(this, "Student ID not found.");
@@ -206,14 +218,14 @@ public class ReportFormGUI extends javax.swing.JFrame {
 
     private void btnExportPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportPDFActionPerformed
         // TODO add your handling code here:
-        String studentId = txtStudentId.getText().trim();
+        studentId = txtStudentId.getText().trim();
 
         if (studentId.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please enter a Student ID first.");
             return;
         }
 
-        StudentReport report = reportService.generateReport(studentId);
+        report = reportService.generateReport(studentId);
 
         if (report == null) {
             JOptionPane.showMessageDialog(this, "Please generate a valid report first.");
@@ -231,17 +243,40 @@ public class ReportFormGUI extends javax.swing.JFrame {
             if (pdf.exists()) {
                 Desktop.getDesktop().open(pdf);
             }
+
+            //Enable the email report button
+            btnEmailReport.setEnabled(true);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }//GEN-LAST:event_btnExportPDFActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        if (parentWindow != null){
+        if (parentWindow != null) {
             parentWindow.setVisible(true);
         }
         this.dispose();
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnEmailReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmailReportActionPerformed
+        try {
+            EmailService emailService = new EmailService();
+
+            emailService.sendEmailWithAttachment(
+                    report.getEmail(),
+                    "Your Academic Report",
+                    EmailTemplates.academicReportNotification(report.getStudentName()),
+                    pdfFileName
+            );
+
+            JOptionPane.showMessageDialog(this, "Email sent successfully!");
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Email sending failed.");
+        }
+
+    }//GEN-LAST:event_btnEmailReportActionPerformed
 
     private void clearFields() {
         txtName.setText("");
@@ -319,9 +354,10 @@ public class ReportFormGUI extends javax.swing.JFrame {
         }
     }
 
- 
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnEmailReport;
     private javax.swing.JButton btnExportPDF;
     private javax.swing.JButton btnGenerate;
     private javax.swing.JLabel jLabel1;

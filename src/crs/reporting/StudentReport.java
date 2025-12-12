@@ -11,12 +11,14 @@ public class StudentReport {
     private String year;
     private List<ReportEntry> entries = new ArrayList<>();
     private double cgpa;
+    private String email;
 
-    public StudentReport(String studentId, String studentName, String major, String year) {
+    public StudentReport(String studentId, String studentName, String major, String year, String email) {
         this.studentId = studentId;
         this.studentName = studentName;
         this.major = major;
         this.year = year;
+        this.email = email;
     }
 
     public void addEntry(ReportEntry entry) {
@@ -72,4 +74,12 @@ public class StudentReport {
     public void setCgpa(double cgpa) {
         this.cgpa = cgpa;
     }  
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }

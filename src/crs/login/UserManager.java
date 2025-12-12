@@ -113,7 +113,7 @@ public class UserManager {
     }
 
     // -------------------- RESET PASSWORD --------------------
-    public boolean resetPassword(String email, String oldPassword, String role, String newPassword) {
+    public boolean resetPassword(String email, String role, String newPassword) {
         List<User> users = loadUsers();
         boolean updated = false;
 
@@ -121,7 +121,6 @@ public class UserManager {
             User u = users.get(i);
 
             if (u.getEmail().equalsIgnoreCase(email)
-                    && u.getPassword().equals(oldPassword)
                     && u.getRole().equalsIgnoreCase(role)
                     && u.isActive()) {
 

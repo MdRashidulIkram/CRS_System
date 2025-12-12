@@ -1,5 +1,8 @@
 package crs.login;
 
+import crs.email.EmailService;
+import crs.email.EmailTemplates;
+import jakarta.mail.MessagingException;
 import javax.swing.JOptionPane;
 
 public class ForgetPassword extends javax.swing.JFrame {
@@ -29,9 +32,7 @@ public class ForgetPassword extends javax.swing.JFrame {
         labelEmail = new javax.swing.JLabel();
         txtFieldEmail = new javax.swing.JTextField();
         labelRole = new javax.swing.JLabel();
-        txtFieldPassword = new javax.swing.JTextField();
         comboBoxRole = new javax.swing.JComboBox<>();
-        labelPassword = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
         btnForget = new javax.swing.JButton();
         txtFieldNewPassword = new javax.swing.JTextField();
@@ -60,15 +61,10 @@ public class ForgetPassword extends javax.swing.JFrame {
 
         labelRole.setForeground(new java.awt.Color(255, 255, 255));
         labelRole.setText("Role:");
-        panelForgetPassword.add(labelRole, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 330, -1, -1));
-        panelForgetPassword.add(txtFieldPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 210, 280, -1));
+        panelForgetPassword.add(labelRole, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 250, -1, -1));
 
-        comboBoxRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ADMIN", "COURSE_ADMIN", "LECTURER", "STUDENT" }));
-        panelForgetPassword.add(comboBoxRole, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 350, 280, -1));
-
-        labelPassword.setForeground(new java.awt.Color(255, 255, 255));
-        labelPassword.setText("Password:");
-        panelForgetPassword.add(labelPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 190, -1, 10));
+        comboBoxRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ACADEMIC_OFFICER", "COURSE_ADMIN" }));
+        panelForgetPassword.add(comboBoxRole, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 270, 280, -1));
 
         btnBack.setText("Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -76,7 +72,7 @@ public class ForgetPassword extends javax.swing.JFrame {
                 btnBackActionPerformed(evt);
             }
         });
-        panelForgetPassword.add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 430, -1, -1));
+        panelForgetPassword.add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 380, -1, -1));
 
         btnForget.setText("Submit");
         btnForget.addActionListener(new java.awt.event.ActionListener() {
@@ -84,12 +80,12 @@ public class ForgetPassword extends javax.swing.JFrame {
                 btnForgetActionPerformed(evt);
             }
         });
-        panelForgetPassword.add(btnForget, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 430, -1, -1));
-        panelForgetPassword.add(txtFieldNewPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 280, 280, -1));
+        panelForgetPassword.add(btnForget, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 380, -1, -1));
+        panelForgetPassword.add(txtFieldNewPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 210, 280, -1));
 
         labelNewPassword.setForeground(new java.awt.Color(255, 255, 255));
         labelNewPassword.setText("New Password:");
-        panelForgetPassword.add(labelNewPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 260, -1, -1));
+        panelForgetPassword.add(labelNewPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 190, -1, -1));
         panelForgetPassword.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 470, 780, -1));
 
         getContentPane().add(panelForgetPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 830, 490));
@@ -99,37 +95,37 @@ public class ForgetPassword extends javax.swing.JFrame {
 
     private void btnForgetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnForgetActionPerformed
         String email = txtFieldEmail.getText().trim();
-    String oldPassword = txtFieldPassword.getText().trim();
-    String newPassword = txtFieldNewPassword.getText().trim();
-    String role = comboBoxRole.getSelectedItem().toString();
+        String newPassword = txtFieldNewPassword.getText().trim();
+        String role = comboBoxRole.getSelectedItem().toString();
 
-    if (email.isEmpty() || oldPassword.isEmpty() || newPassword.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "All fields are required!",
-                "Validation Error", JOptionPane.WARNING_MESSAGE);
-        return;
-    }
+        if (email.isEmpty() || newPassword.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "All fields are required!",
+                    "Validation Error", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
 
-    UserManager um = new UserManager();
-    boolean success = um.resetPassword(email, oldPassword, role, newPassword);
+        UserManager um = new UserManager();
+        boolean success = um.resetPassword(email, role, newPassword);
 
-    if (success) {
-        JOptionPane.showMessageDialog(this,
-                "Password updated successfully!",
-                "Success", JOptionPane.INFORMATION_MESSAGE);
+        if (success) {
+            JOptionPane.showMessageDialog(this,
+                    "Password updated successfully!",
+                    "Success", JOptionPane.INFORMATION_MESSAGE);
 
-        new Main().setVisible(true);
-        this.dispose();
+            new Main().setVisible(true);
+            this.dispose();
 
-    } else {
-        JOptionPane.showMessageDialog(this,
-                "Invalid email, old password, or role.",
-                "Failed", JOptionPane.ERROR_MESSAGE);
-    }
+            new EmailService().sendEmail(email, "Password Reset", EmailTemplates.passwordReset(newPassword));
+        } else {
+            JOptionPane.showMessageDialog(this,
+                    "Invalid email, old password, or role.",
+                    "Failed", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnForgetActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-    new Main().setVisible(true);
-    this.dispose();  // close Login window
+        new Main().setVisible(true);
+        this.dispose();  // close Login window
     }//GEN-LAST:event_btnBackActionPerformed
 
     /**
@@ -179,11 +175,9 @@ public class ForgetPassword extends javax.swing.JFrame {
     private javax.swing.JLabel labelEmail;
     private javax.swing.JLabel labelForgetPassword;
     private javax.swing.JLabel labelNewPassword;
-    private javax.swing.JLabel labelPassword;
     private javax.swing.JLabel labelRole;
     private javax.swing.JPanel panelForgetPassword;
     private javax.swing.JTextField txtFieldEmail;
     private javax.swing.JTextField txtFieldNewPassword;
-    private javax.swing.JTextField txtFieldPassword;
     // End of variables declaration//GEN-END:variables
 }

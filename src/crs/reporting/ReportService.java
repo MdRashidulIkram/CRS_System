@@ -25,12 +25,7 @@ public class ReportService {
             return null; // student not found
         }
 
-        StudentReport report = new StudentReport(
-                studentId,
-                info.name,
-                info.major,
-                info.year
-        );
+        StudentReport report = new StudentReport(studentId, info.name, info.major, info.year, info.email);
 
         // Pull grades for student
         List<GradesRepository.GradeRecord> grades = gradesRepo.getGrades(studentId);

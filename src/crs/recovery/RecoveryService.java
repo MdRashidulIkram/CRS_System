@@ -93,10 +93,7 @@ public class RecoveryService {
     // -------------------------------------------------------------------------
     // HELPERS
     // -------------------------------------------------------------------------
-    /**
-     * Gets recommended study tasks combined with progress status. Useful for
-     * checkboxes UI.
-     */
+    
     public List<RecoveryMilestone> getMilestones(String studentId) {
         return repository.getMilestones(studentId);
     }
@@ -108,5 +105,4 @@ public class RecoveryService {
     public List<RecoveryProgress> getProgress(String studentId) {
         return repository.getProgress(studentId);
     }
-
 }
