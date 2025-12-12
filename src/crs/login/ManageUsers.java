@@ -237,7 +237,12 @@ public class ManageUsers extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        new AcademicOfficerDashboard(currentUser).setVisible(true);
+        if (currentUser.getRole().equalsIgnoreCase("course_admin")){
+            new CourseAdminDashboard(currentUser).setVisible(true);
+        }
+        else{
+            new AcademicOfficerDashboard(currentUser).setVisible(true);
+        }        
         this.dispose();
     }//GEN-LAST:event_btnBackActionPerformed
 
