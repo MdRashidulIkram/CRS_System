@@ -2,4 +2,4 @@ U001|Ali Ahmad|ali.ahmad@apu.edu.my|ali_admin|admin123|COURSE_ADMIN|ACTIVE
 U002|Sara Khan|sara.khan@apu.edu.my|sara_ca|ca2025|COURSE_ADMIN|ACTIVE
 U003|John Lee|john.lee@apu.edu.my|john_lect|Pass4321|COURSE_ADMIN|ACTIVE
 U004|rashidul ikram sami|rashidulikram406@gmail.com|songoku|baba|ACADEMIC_OFFICER|ACTIVE
-U1765176409874|john doe|jd@gmail.com|jd|jd|COURSE_ADMIN|ACTIVE
+U1765176409874|jd|jd@gmail.com|jdjd|jd|ACADEMIC_OFFICER|ACTIVE

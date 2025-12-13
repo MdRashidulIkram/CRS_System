@@ -1,23 +1,28 @@
 package crs.recovery;
 
+import crs.email.EmailService;
+import crs.reporting.StudentRepository;
 import crs.util.ResourceUtil;
+import java.io.File;
 
 public final class RecoveryModuleFactory {
 
-    private RecoveryModuleFactory() {}
+    private RecoveryModuleFactory() {
+    }
 
     public static RecoveryService createService() {
-        String failedFile = ResourceUtil.get("recovery_failed_components.csv");
-        String recFile = ResourceUtil.get("recovery_recommendations.csv");
-        String milestonesFile = ResourceUtil.get("recovery_milestones.csv");
-        String progressFile = ResourceUtil.get("recovery_progress.csv");
+        String base = System.getProperty("user.dir") + "/data/";
 
-        // If any resource missing ResourceUtil.get will return null — handle accordingly
+        File dataDir = new File(base);
+        if (!dataDir.exists()) {
+            dataDir.mkdirs();
+        }
+
         RecoveryRepository repo = new RecoveryRepository(
-                failedFile != null ? failedFile : "recovery_failed_components.csv",
-                recFile != null ? recFile : "recovery_recommendations.csv",
-                milestonesFile != null ? milestonesFile : "recovery_milestones.csv",
-                progressFile != null ? progressFile : "recovery_progress.csv"
+                base + "recovery_failed_components.csv",
+                base + "recovery_recommendations.csv",
+                base + "recovery_milestones.csv",
+                base + "recovery_progress.csv"
         );
 
         // load all CSVs now
@@ -26,6 +31,14 @@ public final class RecoveryModuleFactory {
         repo.loadMilestones();
         repo.loadProgress();
 
-        return new RecoveryService(repo);
+        StudentRepository studentRepo = new StudentRepository();
+        String studentFile = ResourceUtil.get("student_information.csv");
+        if (studentFile != null) {
+            studentRepo.loadStudents(studentFile);
+        }
+
+        EmailService emailService = new EmailService();
+
+        return new RecoveryService(repo, studentRepo, emailService);
     }
 }

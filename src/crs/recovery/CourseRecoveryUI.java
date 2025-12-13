@@ -289,10 +289,6 @@ public class CourseRecoveryUI extends javax.swing.JFrame {
             }
             mMil.addRow(new Object[]{mm.getCourseCode(), mm.getWeekRange(), mm.getTask(), status});
         }
-
-        if (failed.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "No failed components found for " + id);
-        }
     }
 
     private void goBack() {
@@ -310,11 +306,11 @@ public class CourseRecoveryUI extends javax.swing.JFrame {
             return;
         }
 
-        // For simplicity, we will use the course code from selected failed row if available
         String courseCode = getSelectedCourseCodeOrAsk();
         if (courseCode == null) return;
 
         recoveryService.addRecommendation(id, courseCode, recText);
+        JOptionPane.showMessageDialog(this, "Email sent successfully!");
         // reload table
         loadStudentData();
         txtRecField.setText("");
@@ -337,6 +333,7 @@ public class CourseRecoveryUI extends javax.swing.JFrame {
         }
         // replace (service removes by student+course and re-adds)
         recoveryService.updateRecommendation(id, courseCode, newText);
+        JOptionPane.showMessageDialog(this, "Email sent successfully!");
         loadStudentData();
         txtRecField.setText("");
     }
@@ -353,6 +350,7 @@ public class CourseRecoveryUI extends javax.swing.JFrame {
 
         String courseCode = (String) tableRec.getValueAt(row, 0);
         recoveryService.removeRecommendation(id, courseCode);
+        JOptionPane.showMessageDialog(this, "Email sent successfully!");
         loadStudentData();
     }
 
@@ -372,6 +370,7 @@ public class CourseRecoveryUI extends javax.swing.JFrame {
         if (courseCode == null) return;
 
         recoveryService.addMilestone(id, courseCode, week, task);
+        JOptionPane.showMessageDialog(this, "Email sent successfully!");
         loadStudentData();
         txtWeek.setText("");
         txtTask.setText("");
@@ -405,6 +404,7 @@ public class CourseRecoveryUI extends javax.swing.JFrame {
         // update progress boolean if status == Completed
         boolean completed = "Completed".equalsIgnoreCase(status);
         recoveryService.updateProgress(id, courseCode, week, completed);
+        JOptionPane.showMessageDialog(this, "Email sent successfully!");
 
         loadStudentData();
         txtWeek.setText("");
@@ -423,6 +423,7 @@ public class CourseRecoveryUI extends javax.swing.JFrame {
 
         String week = (String) tableMilestones.getValueAt(row, 1);
         recoveryService.removeMilestone(id, week);
+        JOptionPane.showMessageDialog(this, "Email sent successfully!");
         loadStudentData();
     }
 
